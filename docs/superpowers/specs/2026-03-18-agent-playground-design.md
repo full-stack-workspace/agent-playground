@@ -89,6 +89,9 @@ packages:
   "private": true,
   "version": "1.0.0",
   "description": "Multi-agent playground using pnpm workspace",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev:code": "pnpm --filter @agent-playground/code-agent dev",
     "dev:research": "pnpm --filter @agent-playground/research-agent dev",
@@ -127,10 +130,15 @@ npm-debug.log*
 
 ### 单个 Agent 包配置
 
-三个 Agent 包都使用 `@agent-playground/` 作用域命名：
+三个 Agent 包都使用 `@agent-playground/` 作用域命名（私有包，无需发布到 npm registry）：
 - `@agent-playground/code-agent`
 - `@agent-playground/research-agent`
 - `@agent-playground/summary-agent`
+
+**实现注意事项：**
+- 使用 ESM 时，相对导入需要显式 `.js` 扩展名
+- `dotenv` 使用方式：在 `src/index.ts` 顶部添加 `import 'dotenv/config'`
+- `summary-agent` 输入处理：先检查是否为有效文件路径，是则读取文件内容，否则直接使用输入文本
 
 #### package.json
 ```json
