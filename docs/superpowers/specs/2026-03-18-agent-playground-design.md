@@ -88,8 +88,41 @@ packages:
   "name": "agent-playground",
   "private": true,
   "version": "1.0.0",
-  "description": "Multi-agent playground using pnpm workspace"
+  "description": "Multi-agent playground using pnpm workspace",
+  "scripts": {
+    "dev:code": "pnpm --filter @agent-playground/code-agent dev",
+    "dev:research": "pnpm --filter @agent-playground/research-agent dev",
+    "dev:summary": "pnpm --filter @agent-playground/summary-agent dev",
+    "typecheck": "pnpm -r typecheck"
+  }
 }
+```
+
+#### .gitignore
+```
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
 ```
 
 ### 单个 Agent 包配置
@@ -104,6 +137,7 @@ packages:
   "scripts": {
     "dev": "ts-node --esm src/index.ts",
     "start": "node --loader ts-node/esm src/index.ts",
+    "build": "tsc",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -123,8 +157,8 @@ packages:
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "strict": true,
     "skipLibCheck": true,
@@ -142,7 +176,19 @@ ANTHROPIC_API_KEY=your_api_key_here
 ```
 
 #### src/index.ts
-基础的 Anthropic SDK 调用示例，包含环境变量加载和简单的对话功能。
+每个 Agent 的入口文件，实现以下基础功能：
+1. 从 `.env` 文件加载 `ANTHROPIC_API_KEY` 环境变量
+2. 初始化 Anthropic SDK 客户端
+3. 提供一个简单的命令行交互：
+   - 接收用户输入（通过命令行参数或 stdin）
+   - 调用 Claude API（使用 claude-3-haiku 模型）
+   - 输出 AI 回复到控制台
+4. 包含基础的错误处理
+
+每个 Agent 有不同的系统提示词（system prompt）：
+- `code-agent`：专注于代码相关任务
+- `research-agent`：专注于研究相关任务
+- `summary-agent`：专注于文本摘要任务
 
 ## 后续可演进方向
 
