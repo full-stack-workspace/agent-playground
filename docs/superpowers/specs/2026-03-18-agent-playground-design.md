@@ -12,7 +12,7 @@
 - 使用 pnpm workspace 管理多个 packages
 - 每个模块使用 TypeScript 和 Node.js 开发
 - 每个 Agent 能在本地独立启动和运行
-- 三个 Agent 包之间互不影响
+- 每个 Agent 包之间互不影响
 
 ## 项目结构
 
@@ -28,7 +28,7 @@ agent-playground/
     │   ├── .env.example
     │   └── src/
     │       └── index.ts
-    ├── research-agent/       # 研究智能体
+    ├── deepsearch-agent/     # 深度深度研究智能体
     │   ├── package.json
     │   ├── tsconfig.json
     │   ├── .env.example
@@ -58,8 +58,8 @@ agent-playground/
 - **用途：** 代码助手 - 帮助编写、审查、解释代码
 - **入口：** `src/index.ts`
 
-### research-agent
-- **用途：** 研究智能体 - 辅助研究工作
+### deepsearch-agent
+- **用途：** 深度研究智能体 - 辅助研究工作
 - **入口：** `src/index.ts`
 
 ### summary-agent
@@ -94,7 +94,7 @@ packages:
   },
   "scripts": {
     "dev:code": "pnpm --filter @agent-playground/code-agent dev",
-    "dev:research": "pnpm --filter @agent-playground/research-agent dev",
+    "dev:deepsearch": "pnpm --filter @agent-playground/deepsearch-agent dev",
     "dev:summary": "pnpm --filter @agent-playground/summary-agent dev",
     "typecheck": "pnpm -r typecheck"
   }
@@ -132,7 +132,7 @@ npm-debug.log*
 
 三个 Agent 包都使用 `@agent-playground/` 作用域命名（私有包，无需发布到 npm registry）：
 - `@agent-playground/code-agent`
-- `@agent-playground/research-agent`
+- `@agent-playground/deepsearch-agent`
 - `@agent-playground/summary-agent`
 
 **实现注意事项：**
@@ -209,7 +209,7 @@ ANTHROPIC_API_KEY=your_api_key_here
   - 输出：代码解释、改进建议、或修复后的代码
   - CLI：`pnpm dev "<code or question>"`
 
-- **research-agent**：
+- **deepsearch-agent**：
   - 输入：研究主题或问题
   - 输出：结构化的研究思路、参考方向
   - CLI：`pnpm dev "<research topic>"`
@@ -221,7 +221,7 @@ ANTHROPIC_API_KEY=your_api_key_here
 
 每个 Agent 有不同的系统提示词（system prompt）：
 - `code-agent`：专注于代码相关任务
-- `research-agent`：专注于研究相关任务
+- `deepsearch-agent`：专注于研究相关任务
 - `summary-agent`：专注于文本摘要任务
 
 ## 后续可演进方向
