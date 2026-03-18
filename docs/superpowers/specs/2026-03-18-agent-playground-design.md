@@ -127,6 +127,11 @@ npm-debug.log*
 
 ### 单个 Agent 包配置
 
+三个 Agent 包都使用 `@agent-playground/` 作用域命名：
+- `@agent-playground/code-agent`
+- `@agent-playground/research-agent`
+- `@agent-playground/summary-agent`
+
 #### package.json
 ```json
 {
@@ -141,13 +146,13 @@ npm-debug.log*
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.x.x",
-    "dotenv": "^16.x.x"
+    "@anthropic-ai/sdk": "^0.24.0",
+    "dotenv": "^16.4.0"
   },
   "devDependencies": {
-    "@types/node": "^20.x.x",
-    "ts-node": "^10.x.x",
-    "typescript": "^5.x.x"
+    "@types/node": "^20.11.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.0"
   }
 }
 ```
@@ -157,13 +162,17 @@ npm-debug.log*
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "node",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "esModuleInterop": true,
     "strict": true,
     "skipLibCheck": true,
     "outDir": "./dist",
     "rootDir": "./src"
+  },
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
@@ -184,6 +193,23 @@ ANTHROPIC_API_KEY=your_api_key_here
    - 调用 Claude API（使用 claude-3-haiku 模型）
    - 输出 AI 回复到控制台
 4. 包含基础的错误处理
+
+**Agent 差异化（除系统提示词外）：**
+
+- **code-agent**：
+  - 输入：代码片段或编程问题
+  - 输出：代码解释、改进建议、或修复后的代码
+  - CLI：`pnpm dev "<code or question>"`
+
+- **research-agent**：
+  - 输入：研究主题或问题
+  - 输出：结构化的研究思路、参考方向
+  - CLI：`pnpm dev "<research topic>"`
+
+- **summary-agent**：
+  - 输入：长文本或文件路径
+  - 输出：简明的要点摘要
+  - CLI：`pnpm dev "<text or file path>"`
 
 每个 Agent 有不同的系统提示词（system prompt）：
 - `code-agent`：专注于代码相关任务
