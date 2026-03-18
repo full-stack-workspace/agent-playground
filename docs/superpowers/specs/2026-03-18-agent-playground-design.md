@@ -156,10 +156,10 @@ npm-debug.log*
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.24.0",
-    "@anthropic-ai/claude-agent-sdk": "^0.x.x",
-    "@langchain/langgraph": "^0.x.x",
-    "langchain": "^0.x.x",
+    "@anthropic-ai/sdk": "^0.79.0",
+    "@anthropic-ai/claude-agent-sdk": "^0.2.77",
+    "@langchain/langgraph": "^1.2.3",
+    "langchain": "^1.2.34",
     "dotenv": "^16.4.0"
   },
   "devDependencies": {
