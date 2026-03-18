@@ -28,7 +28,7 @@ agent-playground/
     │   ├── .env.example
     │   └── src/
     │       └── index.ts
-    ├── deepsearch-agent/     # 深度深度研究智能体
+    ├── deepsearch-agent/     # 深度研究智能体
     │   ├── package.json
     │   ├── tsconfig.json
     │   ├── .env.example
@@ -51,6 +51,8 @@ agent-playground/
 | 运行时 | Node.js 18+ | LTS 版本 |
 | TS 运行 | ts-node + typescript | 直接运行 TypeScript |
 | LLM SDK | @anthropic-ai/sdk | Anthropic 官方 SDK |
+| Agent SDK | @anthropic-ai/claude-agent-sdk | Anthropic Claude Agent SDK |
+| Agent 框架 | langchain, @langchain/langgraph | LangChain 及 LangGraph 状态图框架 |
 
 ## 包说明
 
@@ -155,6 +157,9 @@ npm-debug.log*
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.24.0",
+    "@anthropic-ai/claude-agent-sdk": "^0.x.x",
+    "@langchain/langgraph": "^0.x.x",
+    "langchain": "^0.x.x",
     "dotenv": "^16.4.0"
   },
   "devDependencies": {
@@ -229,4 +234,3 @@ ANTHROPIC_API_KEY=your_api_key_here
 1. 添加共享包 `packages/shared` 用于公共代码
 2. 引入测试框架（vitest/jest）
 3. 添加统一的 lint/format 配置
-4. 引入 Agent 框架（LangChain 等）
