@@ -7,6 +7,7 @@
     "node": ">=18.0.0"
   },
   "scripts": {
+    "dev:basic": "pnpm --filter @agent-playground/basic-example dev",
     "dev:code": "pnpm --filter @agent-playground/code-agent dev",
     "dev:deepsearch": "pnpm --filter @agent-playground/deepsearch-agent dev",
     "dev:summary": "pnpm --filter @agent-playground/summary-agent dev",
