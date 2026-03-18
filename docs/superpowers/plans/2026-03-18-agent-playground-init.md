@@ -19,14 +19,20 @@
 - Create: `package.json`
 - Create: `.gitignore`
 
-- [ ] **Step 1: 创建 pnpm-workspace.yaml**
+- [ ] **Step 1: 创建 packages 目录**
+
+```bash
+mkdir -p packages
+```
+
+- [ ] **Step 2: 创建 pnpm-workspace.yaml**
 
 ```yaml
 packages:
   - 'packages/*'
 ```
 
-- [ ] **Step 2: 创建根 package.json**
+- [ ] **Step 3: 创建根 package.json**
 
 ```json
 {
@@ -46,7 +52,7 @@ packages:
 }
 ```
 
-- [ ] **Step 3: 创建 .gitignore**
+- [ ] **Step 4: 创建 .gitignore**
 
 ```
 # Dependencies
@@ -74,7 +80,7 @@ Thumbs.db
 npm-debug.log*
 ```
 
-- [ ] **Step 4: 提交根目录配置**
+- [ ] **Step 5: 提交根目录配置**
 
 ```bash
 git add pnpm-workspace.yaml package.json .gitignore
@@ -500,7 +506,7 @@ git commit -m "Init: Add summary-agent package"
 ### Task 5: 安装依赖并验证项目
 
 **Files:**
-- Modify: `.gitignore` (if needed)
+- Create: `README.md`
 
 - [ ] **Step 1: 运行 pnpm install**
 
@@ -520,7 +526,7 @@ Expected: 无错误输出
 
 说明：用户需要复制 `.env.example` 为 `.env` 并填入自己的 `ANTHROPIC_API_KEY`
 
-- [ ] **Step 4: 更新 README.md 添加使用说明**
+- [ ] **Step 4: 创建 README.md 添加使用说明**
 
 ```markdown
 # agent-playground
@@ -572,7 +578,7 @@ pnpm dev:summary "需要总结的文本或文件路径"
 - `@agent-playground/summary-agent` - 文章摘要总结
 ```
 
-- [ ] **Step 5: 提交 README 更新**
+- [ ] **Step 5: 提交 README**
 
 ```bash
 git add README.md
