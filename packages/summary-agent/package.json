@@ -1,5 +1,5 @@
 {
-  "name": "@agent-playground/basic-example",
+  "name": "@agent-playground/summary-agent",
   "version": "1.0.0",
   "private": true,
   "type": "module",
