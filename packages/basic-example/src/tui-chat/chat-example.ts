@@ -1,4 +1,4 @@
-import {query, Query, Options } from "@anthropic-ai/claude-agent-sdk";
+import { query, Query, Options } from "@anthropic-ai/claude-agent-sdk";
 import chalk from 'chalk';
 
 export async function chatExample(userInput: string, options: Options = {}) {
@@ -14,11 +14,20 @@ export async function chatExample(userInput: string, options: Options = {}) {
     let currentSection: 'thinking' | 'text' | null = null;
 
     const includePartialMessages = options?.includePartialMessages ?? false;
+    const allowedTools = options?.allowedTools ?? [];
+
+    const systemPrompt = allowedTools.length > 0
+        ? `You are a helpful assistant that can use tools to get information. You can use the following tools: ${allowedTools?.join(', ')}`
+        : 'You are a helpful assistant that can help users with their questions.';
+
+    console.log(chalk.bgGray.gray(`chatExample systemPrompt: ${systemPrompt}`));
 
     const result: Query = query({
         prompt: userInput,
         options: {
+            systemPrompt: systemPrompt,
             resume: options?.sessionId,
+            mcpServers: options?.mcpServers,
             allowedTools: options?.allowedTools,
             includePartialMessages: includePartialMessages,
         }
@@ -113,21 +122,33 @@ export async function chatExample(userInput: string, options: Options = {}) {
                     break;
                 }
                 case 'assistant': {
+                    // 过滤掉 partial messages
                     if (includePartialMessages) {
                         // When streaming is enabled, ignore aggregated assistant messages
                         // but keep consuming the stream events.
                         break;
                     }
+
+                    console.log(chalk.red('assistant message:'), JSON.stringify(message));
+
                     for (const block of message.message?.content) {
                         if (block.type === 'thinking') {
                             process.stdout.write(chalk.red('Thinking: '));
                             process.stdout.write(chalk.gray(block.thinking));
+                            process.stdout.write(chalk.greenBright('\r\n'));
+
                         }
-                    }
-                    for (const block of message.message?.content) {
                         if (block.type === 'text') {
                             process.stdout.write(chalk.greenBright('\r\nAssistant text: '));
                             process.stdout.write(chalk.yellow(block.text));
+                            process.stdout.write(chalk.greenBright('\r\n'));
+                        }
+                        if (block.type === 'tool_use') {
+                            process.stdout.write(chalk.yellow(`Using tool: ${block.name} \r\n`));
+                            if (block.input) {
+                                // @ts-ignore
+                                process.stdout.write(chalk.red(` - Input: ${block?.input?.expression || 'none'} \r\n`));
+                            }
                         }
                     }
                     break;
