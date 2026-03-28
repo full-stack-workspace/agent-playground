@@ -12,5 +12,21 @@
     "dev:deepresearch": "pnpm --filter @agent-playground/deepresearch-agent dev",
     "dev:summary": "pnpm --filter @agent-playground/summary-agent dev",
     "typecheck": "pnpm -r typecheck"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "^0.2.77",
+    "@anthropic-ai/sdk": "^0.79.0",
+    "@langchain/core": "^1.1.33",
+    "@langchain/langgraph": "^1.2.3",
+    "chalk": "^5.6.2",
+    "dotenv": "^17.3.1",
+    "langchain": "^1.2.34",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   }
 }
