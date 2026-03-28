@@ -20,7 +20,6 @@ DeepResearch Agent 采用 **Lead Agent + Subagent** 架构：
 
 **核心设计：**报告撰写员的输入来自两条路径汇聚，确保报告既有深度调研内容，又有直观的数据支撑。
 
-
 - Lead Agent **绝不直接进行研究或写作**，所有工作都委托给子智能体
 - Lead Agent **保持简短回复**（2-3 句话，无 emoji）
 - Researcher 必须找到 **10-15+ 个具体数据点**（百分比、市场规模、增长率等）供后续可视化
@@ -55,6 +54,9 @@ DeepResearch Agent 采用 **Lead Agent + Subagent** 架构：
 | `files/reports/` | 最终 PDF 报告（嵌入图表） | Report Writer |
 
 ### 原理示意
+
+![DeepResearch Agent 工作流程](./image.png)
+
 ```
                         👑 主智能体 [Lead Agent]
                  (负责任务拆解、协调与全局调度 - Task Tool)
