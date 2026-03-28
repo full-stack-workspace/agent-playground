@@ -42,7 +42,7 @@ pnpm dev:basic
 pnpm dev:code "解释这段代码的功能"
 
 # 运行 deepresearch-agent（深度研究助手）
-pnpm dev:deepsearch "研究量子计算的最新进展"
+pnpm dev:deepresearch "研究量子计算的最新进展"
 
 # 运行 summary-agent（文本总结）
 pnpm dev:summary "需要总结的文本或文件路径"
@@ -50,12 +50,12 @@ pnpm dev:summary "需要总结的文本或文件路径"
 
 ## 包说明
 
-| 包名 | 描述 |
-|------|------|
-| `@agent-playground/basic-example` | 基础示例 - 包含查询示例、会话示例和 TUI 聊天界面，支持 WebSearch/WebFetch 工具 |
-| `@agent-playground/code-agent` | 代码助手 - 解释代码、提供改进建议、修复 bug、编写新代码 |
-| `@agent-playground/deepresearch-agent` | 深度研究智能体 - 分析研究主题、提供研究方向建议 |
-| `@agent-playground/summary-agent` | 文章摘要总结 - 从文本或文件中提取关键点并生成摘要 |
+| 包名 | 描述 | 进展状态 |
+|------|------|----------|
+| `@agent-playground/basic-example` | 基础示例 - 包含查询示例、会话示例和 TUI 聊天界面，支持 WebSearch/WebFetch 工具 | ✅ 已完成 |
+| `@agent-playground/code-agent` | 代码助手 - 解释代码、提供改进建议、修复 bug、编写新代码 | ⏳ 进行中 |
+| `@agent-playground/deepresearch-agent` | 深度研究智能体 - 分析研究主题、提供研究方向建议 | ✅ 已完成 |
+| `@agent-playground/summary-agent` | 文章摘要总结 - 从文本或文件中提取关键点并生成摘要 | ⏳ 进行中 |
 
 ## 项目结构
 
