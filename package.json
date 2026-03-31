@@ -10,6 +10,7 @@
     "dev:basic": "pnpm --filter @agent-playground/basic-example dev",
     "dev:code": "pnpm --filter @agent-playground/code-agent dev",
     "dev:deepresearch": "pnpm --filter @agent-playground/deepresearch-agent dev",
+    "dev:article-research": "pnpm --filter @agent-playground/article-research-agent dev",
     "dev:summary": "pnpm --filter @agent-playground/summary-agent dev",
     "typecheck": "pnpm -r typecheck"
   },
