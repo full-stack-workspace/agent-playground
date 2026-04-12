@@ -1,95 +1,93 @@
 # agent-playground
 
-使用 pnpm workspace 管理的 TypeScript + Node.js AI Agent 开发项目，展示多种构建智能体的方式。
+一个用于研究、探索多种 AI Agent 构建模式的实验场。在实践中学习，为生产环境构建 Agent 做技术储备。
 
-## 开发环境
+## 理念
+
+这不是一个开箱即用的产品，而是持续演进的技术实验。
+
+每个 Agent 都是对一种构建模式的探索：多 Agent 编排、工具调用、上下文管理、输出结构化、Agent 安全性等。通过实践对比不同方案的优劣，为真实场景的选择提供依据。方案不绑定特定框架——当有更好的选择时，重构是正常的。
+
+## Agent 一览
+
+| 包 | 描述 | 核心模式 |
+|---|---|---|
+| `basic-example` | TUI 聊天界面和入门示例 | 流式输出、Session 管理、MCP 工具 |
+| `deepresearch-agent` | 深度研究助手，生成带图表的 PDF 报告 | Lead Agent + 多 Subagent 流水线、并行研究 |
+| `article-research-agent` | 多角度文章分析，带质量评分 | Lead Agent + Subagent、多维度研究、结果聚合 |
+| `insight-linter` | 技术博客文章评审与优化建议 | 多维度评分、标题与 SEO 优化；面向 OpenClaw 与本地 Claude Code 自动化审稿场景 |
+
+## 快速开始
+
+### 环境要求
 
 - Node.js >= 18.0.0
 - pnpm >= 8.0.0
 
-## 安装依赖
+### 安装
 
 ```bash
 pnpm install
 ```
 
-## 配置 API Key
+### 配置 API Key
 
-每个 Agent 需要配置 API Key：
+每个 Agent 需要单独配置 API Key：
 
 ```bash
 # 为 basic-example 配置
 cp packages/basic-example/.env.example packages/basic-example/.env
 # 编辑 packages/basic-example/.env，填入你的 ANTHROPIC_API_KEY
 
-# 为 code-agent 配置
-cp packages/code-agent/.env.example packages/code-agent/.env
-
 # 为 deepresearch-agent 配置
 cp packages/deepresearch-agent/.env.example packages/deepresearch-agent/.env
 
-# 为 summary-agent 配置
-cp packages/summary-agent/.env.example packages/summary-agent/.env
+# 为 article-research-agent 配置
+cp packages/article-research-agent/.env.example packages/article-research-agent/.env
+
+# 为 insight-linter 配置
+cp packages/insight-linter/.env.example packages/insight-linter/.env
 ```
 
-## 运行 Agent
+### 运行
 
 ```bash
-# 运行 basic-example（TUI 聊天界面，支持 WebSearch 工具）
+# basic-example — TUI 聊天界面，支持 WebSearch 工具
 pnpm dev:basic
 
-# 运行 code-agent（代码助手）
-pnpm dev:code "解释这段代码的功能"
-
-# 运行 deepresearch-agent（深度研究助手）
+# deepresearch-agent — 深度研究助手
 pnpm dev:deepresearch "研究量子计算的最新进展"
 
-# 运行 summary-agent（文本总结）
-pnpm dev:summary "需要总结的文本或文件路径"
+# article-research-agent — 文章多角度分析
+pnpm dev:article-research
 ```
-
-## 包说明
-
-| 包名 | 描述 | 进展状态 |
-|------|------|----------|
-| `@agent-playground/basic-example` | 基础示例 - 包含查询示例、会话示例和 TUI 聊天界面，支持 WebSearch/WebFetch 工具 | ✅ 已完成 |
-| `@agent-playground/code-agent` | 代码助手 - 解释代码、提供改进建议、修复 bug、编写新代码 | ⏳ 进行中 |
-| `@agent-playground/deepresearch-agent` | 深度研究智能体 - 分析研究主题、提供研究方向建议 | ✅ 已完成 |
-| `@agent-playground/summary-agent` | 文章摘要总结 - 从文本或文件中提取关键点并生成摘要 | ⏳ 进行中 |
 
 ## 项目结构
 
 ```
 agent-playground/
 ├── packages/
-│   ├── basic-example/       # 基础示例和 TUI 聊天
-│   ├── code-agent/          # 代码助手
-│   ├── deepresearch-agent/  # 深度研究助手
-│   └── summary-agent/       # 文本摘要助手
+│   ├── basic-example/        # TUI 聊天与入门示例
+│   ├── deepresearch-agent/   # 深度研究助手
+│   ├── article-research-agent/# 文章多角度分析
+│   └── insight-linter/       # 技术文章评审
 ├── package.json
-├── pnpm-workspace.yaml
-└── README.md
+└── pnpm-workspace.yaml
 ```
-
-## 技术栈
-
-- **TypeScript** - 类型安全的 JavaScript
-- **@anthropic-ai/sdk** - Claude API 官方 SDK
-- **@anthropic-ai/claude-agent-sdk** - 高级 Agent SDK（支持工具和会话）
-- **pnpm** - 快速、节省磁盘空间的包管理器
-- **tsx** - TypeScript 执行引擎
-- **dotenv** - 环境变量管理
-- **chalk** - 终端彩色输出
 
 ## 开发命令
 
 ```bash
-# 类型检查
+# 类型检查（所有包）
 pnpm typecheck
 
 # 在单个包中开发
-cd packages/basic-example
+cd packages/<package-name>
 pnpm dev
 pnpm build
 pnpm typecheck
 ```
+
+## 参与
+
+这是一个持续探索的项目。欢迎尝试任何 Agent，在实践中发现新问题、提出新想法。
